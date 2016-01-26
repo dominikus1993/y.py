@@ -1,5 +1,6 @@
 from typing import List
 
+
 def range(start: int, end: int) -> List[int]:
     def gen(start, end):
         while start <= end:
@@ -19,5 +20,3 @@ def each(collection):
 def filter(collection, predicate):
     result = []
     return result
-
-
