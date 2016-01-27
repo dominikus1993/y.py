@@ -16,3 +16,13 @@ class Tests(TestCase):
         test_predicate = lambda x: x % 2 == 0
         test_result = y.filter(test_list, test_predicate)
         self.assertListEqual(test_result, [2, 4, 6, 8, 10])
+
+    def test_each(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        def test_callback(x):
+            y = x + 1
+            self.assertEqual(x + 1, y)
+            return x
+
+        test_result = y.each(test_list, test_callback)

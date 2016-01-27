@@ -16,8 +16,13 @@ def range(start: int, end: int) -> List[int]:
         raise Exception("Invalid Parameter Error")
 
 
-def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
+def each(collection: List[T], callback: Callable[[T], T]):
+    for element in collection:
+        callback(element)
+    return collection
 
+
+def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
     def tail_filter(data, acc):
         if len(data) != 0:
             head, *tail = data
