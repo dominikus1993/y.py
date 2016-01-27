@@ -1,4 +1,7 @@
-from typing import List
+from typing import List, Callable
+from typing import TypeVar
+
+T = TypeVar("T")
 
 
 def range(start: int, end: int) -> List[int]:
@@ -13,10 +16,16 @@ def range(start: int, end: int) -> List[int]:
         raise Exception("Invalid Parameter Error")
 
 
-def each(collection):
-    return 0
+def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
 
+    def tail_filter(data, acc):
+        if len(data) != 0:
+            head, *tail = data
+            if predicate(head):
+                return tail_filter(tail, acc + [head])
+            else:
+                return tail_filter(tail, acc)
+        else:
+            return acc
 
-def filter(collection, predicate):
-    result = []
-    return result
+    return tail_filter(collection, [])
