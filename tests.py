@@ -26,3 +26,10 @@ class Tests(TestCase):
             return x
 
         test_result = y.each(test_list, test_callback)
+
+    def test_map(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_mapper = lambda x: x + 1
+
+        test_result = y.map(test_list, test_mapper)
+        self.assertListEqual(test_result, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11])

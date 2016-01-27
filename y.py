@@ -22,6 +22,16 @@ def each(collection: List[T], callback: Callable[[T], T]):
     return collection
 
 
+def map(collection: List[T], callback: Callable[[T], T]) -> List[T]:
+    def tail_map(col, acc):
+        if len(col) > 0:
+            head, *tail = col
+            return tail_map(tail, acc + [callback(head)])
+        else:
+            return acc
+    return tail_map(collection, [])
+
+
 def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
     def tail_filter(data, acc):
         if len(data) != 0:
