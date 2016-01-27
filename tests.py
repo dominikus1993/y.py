@@ -33,3 +33,10 @@ class Tests(TestCase):
 
         test_result = y.map(test_list, test_mapper)
         self.assertListEqual(test_result, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+
+    def test_reduce(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_reductor = lambda acc, x: acc + x
+
+        test_result = y.reduce(test_list, test_reductor, 0)
+        self.assertEqual(test_result, 55)

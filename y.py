@@ -29,7 +29,19 @@ def map(collection: List[T], callback: Callable[[T], T]) -> List[T]:
             return tail_map(tail, acc + [callback(head)])
         else:
             return acc
+
     return tail_map(collection, [])
+
+
+def reduce(collection: List[T], callback: Callable[[T, T], T], initailize_value: T):
+    def tail_reduce(data, acc):
+        if len(data) != 0:
+            head, *tail = data
+            return tail_reduce(tail, callback(acc, head))
+        else:
+            return acc
+
+    return tail_reduce(collection, initailize_value)
 
 
 def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
