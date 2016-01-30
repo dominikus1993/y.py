@@ -1,3 +1,4 @@
+import unittest
 from unittest import TestCase
 import y
 
@@ -41,17 +42,28 @@ class Tests(TestCase):
 
     def test_reduce(self):
         test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        test_reductor = lambda acc, x: acc + x
 
-        test_result = y.reduce(test_list, test_reductor, 0)
+        def test_reducer(acc, x):
+            return acc + x
+
+        test_result = y.reduce(test_list, test_reducer, 0)
         self.assertEqual(test_result, 55)
 
     def test_first(self):
         test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        test_predicate = lambda x: x % 2 == 0
+
+        def test_predicate(x):
+            return x % 2 == 0
+
         test_result = y.first(test_list, test_predicate)
         self.assertEqual(test_result, 2)
 
         # invalid predicate
-        test_predicate2 = lambda x: x == 12
+        def test_predicate2(x):
+            return x == 12
+
         self.assertRaises(Exception, lambda: y.first(test_list, test_predicate2))
+
+
+if __name__ == '__main__':
+    unittest.main()
