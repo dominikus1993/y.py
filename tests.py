@@ -11,6 +11,11 @@ class Tests(TestCase):
         self.assertEqual(test_result[-1], 10)
         self.assertEqual(test_result[0], 1)
 
+        # invalid start and end
+        bad_start = 10
+        bad_end = 1
+        self.assertRaises(Exception, lambda: y.range(bad_start, bad_end))
+
     def test_filter(self):
         test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         test_predicate = lambda x: x % 2 == 0
@@ -46,3 +51,7 @@ class Tests(TestCase):
         test_predicate = lambda x: x % 2 == 0
         test_result = y.first(test_list, test_predicate)
         self.assertEqual(test_result, 2)
+
+        # invalid predicate
+        test_predicate2 = lambda x: x == 12
+        self.assertRaises(Exception, lambda: y.first(test_list, test_predicate2))

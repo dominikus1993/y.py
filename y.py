@@ -62,6 +62,6 @@ def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
 def first(collection: List[T], predicate: Callable[[T], bool]) -> T:
     result = filter(collection, predicate)
     if len(result) == 0:
-        return None
+        raise Exception("No element achieve predicate")
     else:
         return result[0]
