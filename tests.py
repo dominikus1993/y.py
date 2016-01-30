@@ -40,3 +40,9 @@ class Tests(TestCase):
 
         test_result = y.reduce(test_list, test_reductor, 0)
         self.assertEqual(test_result, 55)
+
+    def test_first(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_predicate = lambda x: x % 2 == 0
+        test_result = y.first(test_list, test_predicate)
+        self.assertEqual(test_result, 2)

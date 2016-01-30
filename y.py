@@ -1,5 +1,6 @@
 from typing import List, Callable
 from typing import TypeVar
+from random import *
 
 T = TypeVar("T")
 
@@ -33,7 +34,7 @@ def map(collection: List[T], callback: Callable[[T], T]) -> List[T]:
     return tail_map(collection, [])
 
 
-def reduce(collection: List[T], callback: Callable[[T, T], T], initailize_value: T):
+def reduce(collection: List[T], callback: Callable[[T, T], T], initialize_value: T):
     def tail_reduce(data, acc):
         if len(data) != 0:
             head, *tail = data
@@ -41,7 +42,7 @@ def reduce(collection: List[T], callback: Callable[[T, T], T], initailize_value:
         else:
             return acc
 
-    return tail_reduce(collection, initailize_value)
+    return tail_reduce(collection, initialize_value)
 
 
 def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
@@ -56,3 +57,11 @@ def filter(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
             return acc
 
     return tail_filter(collection, [])
+
+
+def first(collection: List[T], predicate: Callable[[T], bool]) -> T:
+    result = filter(collection, predicate)
+    if len(result) == 0:
+        return None
+    else:
+        return result[0]
