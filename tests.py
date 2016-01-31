@@ -64,6 +64,11 @@ class Tests(TestCase):
 
         self.assertRaises(Exception, lambda: y.first(test_list, test_predicate2))
 
+    def test_reject(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_predicate = lambda x: x % 2 == 0
+        test_result = y.reject(test_list, test_predicate)
+        self.assertListEqual(test_result, [1, 3, 5, 7, 9])
 
 if __name__ == '__main__':
     unittest.main()

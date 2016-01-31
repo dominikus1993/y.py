@@ -64,3 +64,8 @@ def first(collection: List[T], predicate: Callable[[T], bool]) -> T:
         raise Exception("No element achieve predicate")
     else:
         return result[0]
+
+
+def reject(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
+    result = filter(collection, lambda x: not predicate(x))
+    return result
