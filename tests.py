@@ -70,5 +70,16 @@ class Tests(TestCase):
         test_result = y.reject(test_list, test_predicate)
         self.assertListEqual(test_result, [1, 3, 5, 7, 9])
 
+    def test_every(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_predicate = lambda x: x % 2 == 0 or x % 2 == 1
+        test_result = y.every(test_list, test_predicate)
+        self.assertTrue(test_result)
+
+        # invalid predicate
+        test_predicate = lambda x: x % 2 == 0
+        test_result = y.every(test_list, test_predicate)
+        self.assertFalse(test_result)
+
 if __name__ == '__main__':
     unittest.main()

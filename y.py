@@ -69,3 +69,8 @@ def first(collection: List[T], predicate: Callable[[T], bool]) -> T:
 def reject(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
     result = filter(collection, lambda x: not predicate(x))
     return result
+
+
+def every(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
+    result = filter(collection, predicate)
+    return len(collection) == len(result)
