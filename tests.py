@@ -92,6 +92,15 @@ class Tests(TestCase):
         test_result = y.some(test_list, test_predicate)
         self.assertFalse(test_result)
 
+    def test_contains(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_result = y.contains(test_list, 1)
+        self.assertTrue(test_result)
+
+        # invalid predicate
+        test_result = y.contains(test_list, 11111)
+        self.assertFalse(test_result)
+
     def test_max(self):
         test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         test_iterate = lambda x: x
@@ -103,5 +112,11 @@ class Tests(TestCase):
         test_iterate = lambda x: x
         test_result = y.min(test_list, test_iterate)
         self.assertEqual(test_result, 1)
+
+        test_list = [2, 3, 4, 5, 1, 6, 7, 8, 9, 10]
+        test_iterate = lambda x: x
+        test_result = y.min(test_list, test_iterate)
+        self.assertEqual(test_result, 1)
+
 if __name__ == '__main__':
     unittest.main()

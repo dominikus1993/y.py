@@ -85,7 +85,7 @@ def contains(collection: List[T], value: T) -> List[T]:
     return some(collection, lambda x: x == value)
 
 
-def max(collection: List[T], iterate: Callable[[T], Any]) -> T:
+def max(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> T:
     def tail_max(data, acc):
         if len(data) != 0:
             head, *tail = data
@@ -99,15 +99,17 @@ def max(collection: List[T], iterate: Callable[[T], Any]) -> T:
     return tail_max(collection, collection[0]) if len(collection) > 0 else None
 
 
-def min(collection: List[T], iterate: Callable[[T], Any]) -> T:
-    def tail_max(data, acc):
+def min(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> T:
+    def tail_min(data, acc):
         if len(data) != 0:
             head, *tail = data
             if iterate(head) < iterate(acc):
-                return tail_max(tail, head)
+                return tail_min(tail, head)
             else:
-                return tail_max(tail, acc)
+                return tail_min(tail, acc)
         else:
             return acc
 
-    return tail_max(collection, collection[0]) if len(collection) > 0 else None
+    return tail_min(collection, collection[0]) if len(collection) > 0 else None
+
+
