@@ -92,5 +92,16 @@ class Tests(TestCase):
         test_result = y.some(test_list, test_predicate)
         self.assertFalse(test_result)
 
+    def test_max(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_iterate = lambda x: x
+        test_result = y.max(test_list, test_iterate)
+        self.assertEqual(test_result, 10)
+
+    def test_min(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_iterate = lambda x: x
+        test_result = y.min(test_list, test_iterate)
+        self.assertEqual(test_result, 1)
 if __name__ == '__main__':
     unittest.main()

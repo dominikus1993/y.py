@@ -1,4 +1,4 @@
-from typing import List, Callable
+from typing import List, Callable, Any
 from typing import TypeVar
 
 T = TypeVar("T")
@@ -79,3 +79,35 @@ def every(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
 def some(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
     result = filter(collection, predicate)
     return len(result) > 0
+
+
+def contains(collection: List[T], value: T) -> List[T]:
+    return some(collection, lambda x: x == value)
+
+
+def max(collection: List[T], iterate: Callable[[T], Any]) -> T:
+    def tail_max(data, acc):
+        if len(data) != 0:
+            head, *tail = data
+            if iterate(head) > iterate(acc):
+                return tail_max(tail, head)
+            else:
+                return tail_max(tail, acc)
+        else:
+            return acc
+
+    return tail_max(collection, collection[0]) if len(collection) > 0 else None
+
+
+def min(collection: List[T], iterate: Callable[[T], Any]) -> T:
+    def tail_max(data, acc):
+        if len(data) != 0:
+            head, *tail = data
+            if iterate(head) < iterate(acc):
+                return tail_max(tail, head)
+            else:
+                return tail_max(tail, acc)
+        else:
+            return acc
+
+    return tail_max(collection, collection[0]) if len(collection) > 0 else None
