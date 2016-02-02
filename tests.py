@@ -81,5 +81,16 @@ class Tests(TestCase):
         test_result = y.every(test_list, test_predicate)
         self.assertFalse(test_result)
 
+    def test_some(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_predicate = lambda x: x == 1
+        test_result = y.some(test_list, test_predicate)
+        self.assertTrue(test_result)
+
+        # invalid predicate
+        test_predicate = lambda x: x == 222
+        test_result = y.some(test_list, test_predicate)
+        self.assertFalse(test_result)
+
 if __name__ == '__main__':
     unittest.main()

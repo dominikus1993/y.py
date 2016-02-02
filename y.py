@@ -74,3 +74,8 @@ def reject(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
 def every(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
     result = filter(collection, predicate)
     return len(collection) == len(result)
+
+
+def some(collection: List[T], predicate: Callable[[T], bool]) -> List[T]:
+    result = filter(collection, predicate)
+    return len(result) > 0
