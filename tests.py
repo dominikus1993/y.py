@@ -118,5 +118,15 @@ class Tests(TestCase):
         test_result = y.min(test_list, test_iterate)
         self.assertEqual(test_result, 1)
 
+    def test_size(self):
+        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_result = y.size(test_list)
+        self.assertEqual(test_result, 10)
+
+    def test_sample(self):
+        test_list = [2, 3, 4, 5, 1, 6, 7, 8, 9, 10]
+        test_result = y.sample(test_list, 3)
+        self.assertEqual(len(test_result), 3)
+
 if __name__ == '__main__':
     unittest.main()

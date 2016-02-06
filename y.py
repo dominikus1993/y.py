@@ -1,5 +1,7 @@
 from typing import List, Callable, Any
 from typing import TypeVar
+from random import *
+import math
 
 T = TypeVar("T")
 
@@ -85,7 +87,7 @@ def contains(collection: List[T], value: T) -> List[T]:
     return some(collection, lambda x: x == value)
 
 
-def max(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> T:
+def max(collection: List[T], iterate: Callable[[T], Any] = lambda x: x) -> T:
     def tail_max(data, acc):
         if len(data) != 0:
             head, *tail = data
@@ -99,7 +101,7 @@ def max(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> T:
     return tail_max(collection, collection[0]) if len(collection) > 0 else None
 
 
-def min(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> T:
+def min(collection: List[T], iterate: Callable[[T], Any] = lambda x: x) -> T:
     def tail_min(data, acc):
         if len(data) != 0:
             head, *tail = data
@@ -113,3 +115,15 @@ def min(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> T:
     return tail_min(collection, collection[0]) if len(collection) > 0 else None
 
 
+def size(collection: List[T]):
+    return len(collection)
+
+
+def sample(collection: List[T], count: int) -> List[T]:
+    n = max([min([count, len(collection)]), 0])
+    tmp_collection = collection
+    last = len(collection)
+    for x in range(0, n):
+        rand = randrange(0, last - 1)
+        tmp_collection[x], tmp_collection[rand] = tmp_collection[rand], tmp_collection[x]
+    return tmp_collection[0:count]
