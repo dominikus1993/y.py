@@ -1,7 +1,6 @@
+from random import *
 from typing import List, Callable, Any, Tuple
 from typing import TypeVar
-from random import *
-import math
 
 T = TypeVar("T")
 
