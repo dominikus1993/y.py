@@ -1,4 +1,4 @@
-from typing import List, Callable, Any
+from typing import List, Callable, Any, Tuple
 from typing import TypeVar
 from random import *
 import math
@@ -127,3 +127,18 @@ def sample(collection: List[T], count: int) -> List[T]:
         rand = randrange(0, last - 1)
         tmp_collection[x], tmp_collection[rand] = tmp_collection[rand], tmp_collection[x]
     return tmp_collection[0:count]
+
+
+def partition(collection: List[T], predicate: Callable[[T], bool]) -> Tuple[List[T], List[T]]:
+    def tail_partition(data, acc1, acc2):
+        if len(data) != 0:
+            head, *tail = data
+            if predicate(head):
+                return tail_partition(tail, acc1 + [head], acc2)
+            else:
+                return tail_partition(tail, acc1, acc2 + [head])
+        else:
+            return acc1, acc2
+
+    result, result1 = tail_partition(collection, [], [])
+    return result, result1

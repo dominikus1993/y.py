@@ -128,5 +128,16 @@ class Tests(TestCase):
         test_result = y.sample(test_list, 3)
         self.assertEqual(len(test_result), 3)
 
+    def test_partition(self):
+        test_list = [2, 3, 4, 5, 1, 6, 7, 8, 9, 10]
+
+        def test_predicate(num):
+            return num % 2 == 0
+
+        test_result = y.partition(test_list, test_predicate)
+        self.assertListEqual(test_result[0], [2, 4, 6, 8, 10])
+        self.assertListEqual(test_result[1], [3, 5, 1, 7, 9])
+
+
 if __name__ == '__main__':
     unittest.main()
