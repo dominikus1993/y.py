@@ -3,3 +3,9 @@
 ### Best competitive library [LAMpy](https://github.com/grapek9/LAMpy)
 ### Requirements:
 #### - Python 3.5
+
+## Examples 
+### - filter
+``` python
+        y.filter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], lambda x: x % 2 == 0)
+```
