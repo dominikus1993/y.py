@@ -141,3 +141,16 @@ def partition(collection: List[T], predicate: Callable[[T], bool]) -> Tuple[List
 
     result, result1 = tail_partition(collection, [], [])
     return result, result1
+
+
+def sort_by(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> List[T]:
+    def sort(data):
+        if len(data):
+            head, *tail = data
+            smaller = sort(filter(tail, lambda x: iterate(x) <= iterate(head)))
+            greater = sort(filter(tail, lambda x: iterate(x) > iterate(head)))
+            return smaller + [head] + greater
+        else:
+            return []
+
+    return sort(collection)
