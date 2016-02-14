@@ -159,9 +159,21 @@ def sort_by(collection: List[T], iterate: Callable[[T], Any] = lambda x: x) -> L
     return sort(collection)
 
 
-def last(collection: List[T]):
+def last(collection: List[T]) -> T:
     if len(collection) == 0:
         return []
     else:
         return collection[-1]
 
+
+def without(collection: List[T], *args) -> List[T]:
+    def tail_without(data, acc):
+        if len(data) != 0:
+            head, *tail = data
+            if len(filter(args, lambda x: x == head)) != 0:
+                return tail_without(tail, acc)
+            else:
+                return tail_without(tail, acc + [head])
+        else:
+            return acc
+    return tail_without(collection, [])
