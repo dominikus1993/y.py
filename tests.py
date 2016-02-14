@@ -18,10 +18,10 @@ class Tests(TestCase):
         self.assertRaises(Exception, lambda: y.range(bad_start, bad_end))
 
     def test_filter(self):
-        test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        test_list = [1, 2, 3, 4, 5, 6]
         test_predicate = lambda x: x % 2 == 0
         test_result = y.filter(test_list, test_predicate)
-        self.assertListEqual(test_result, [2, 4, 6, 8, 10])
+        self.assertListEqual(test_result, [2, 4, 6])
 
     def test_each(self):
         test_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -144,18 +144,23 @@ class Tests(TestCase):
         self.assertListEqual(test_result, [1, 6, 6, 7, 8, 14, 45])
 
     def test_last(self):
-        test_list = [1, 2, 3, 4, 5]
+        test_list = [5, 4, 3, 2, 1]
         test_result = y.last(test_list)
-        self.assertEqual(test_result, 5)
+        self.assertEqual(test_result, 1)
+
         test_list = []
         test_result = y.last(test_list)
         self.assertListEqual(test_result, [])
 
     def test_without(self):
-        test_list = [1, 2, 3, 4, 5]
-        test_result = y.without(test_list, 2, 3, 5)
-        self.assertListEqual(test_result, [1, 4])
+        test_list = [1, 2, 1, 0, 3, 1, 4]
+        test_result = y.without(test_list, 0, 1)
+        self.assertListEqual(test_result, [2, 3, 4])
 
+    def test_rest(self):
+        test_list = [5, 4, 3, 2, 1]
+        test_result = y.rest(test_list)
+        self.assertListEqual(test_result, [4, 3, 2, 1])
 
 if __name__ == '__main__':
     unittest.main()

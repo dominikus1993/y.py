@@ -176,4 +176,9 @@ def without(collection: List[T], *args) -> List[T]:
                 return tail_without(tail, acc + [head])
         else:
             return acc
+
     return tail_without(collection, [])
+
+
+def rest(collection: List[T]) -> List[T]:
+    return collection[1::]
