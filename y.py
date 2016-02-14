@@ -143,7 +143,7 @@ def partition(collection: List[T], predicate: Callable[[T], bool]) -> Tuple[List
     return result, result1
 
 
-def sort_by(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> List[T]:
+def sort_by(collection: List[T], iterate: Callable[[T], Any] = lambda x: x) -> List[T]:
     def sort(data):
         if len(data):
             head, *tail = data
@@ -154,3 +154,10 @@ def sort_by(collection: List[T], iterate: Callable[[T], Any]=lambda x: x) -> Lis
             return []
 
     return sort(collection)
+
+
+def last(collection: List[T]):
+    if len(collection) == 0:
+        return []
+    else:
+        return collection[-1]

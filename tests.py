@@ -143,6 +143,15 @@ class Tests(TestCase):
         test_result = y.sort_by(test_list)
         self.assertListEqual(test_result, [1, 6, 6, 7, 8, 14, 45])
 
+    def test_las(self):
+        test_list = [1, 2, 3, 4, 5]
+        test_result = y.last(test_list)
+        self.assertEqual(test_result, 5)
+
+        test_list = []
+        test_result = y.last(test_list)
+        self.assertListEqual(test_result, [])
+
 
 if __name__ == '__main__':
     unittest.main()
