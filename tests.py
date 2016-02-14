@@ -147,7 +147,6 @@ class Tests(TestCase):
         test_list = [1, 2, 3, 4, 5]
         test_result = y.last(test_list)
         self.assertEqual(test_result, 5)
-
         test_list = []
         test_result = y.last(test_list)
         self.assertListEqual(test_result, [])

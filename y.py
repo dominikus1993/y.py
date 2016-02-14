@@ -2,6 +2,9 @@ from random import *
 from typing import List, Callable, Any, Tuple
 from typing import TypeVar
 
+import sys
+
+sys.setrecursionlimit(100000000)
 T = TypeVar("T")
 
 
@@ -161,3 +164,4 @@ def last(collection: List[T]):
         return []
     else:
         return collection[-1]
+
