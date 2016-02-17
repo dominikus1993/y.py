@@ -162,5 +162,13 @@ class Tests(TestCase):
         test_result = y.rest(test_list)
         self.assertListEqual(test_result, [4, 3, 2, 1])
 
+    def test_initial(self):
+        test_list = [5, 4, 3, 2, 1]
+        test_result = y.initial(test_list)
+        self.assertListEqual(test_result, [5, 4, 3, 2])
+
+        test_result = y.initial(test_list, 555)
+        self.assertListEqual(test_result, [])
+
 if __name__ == '__main__':
     unittest.main()

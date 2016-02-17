@@ -182,3 +182,15 @@ def without(collection: List[T], *args) -> List[T]:
 
 def rest(collection: List[T]) -> List[T]:
     return collection[1::]
+
+
+def initial(collection: List[T], n: int = 1) -> List[T]:
+    def local_initial():
+        local_size = len(collection) - min([len(collection), n])
+        if (local_size - 1) > 0:
+            for x in range(0, local_size - 1):
+                yield collection[x]
+        else:
+            return []
+
+    return list(local_initial())
