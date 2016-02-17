@@ -167,7 +167,7 @@ class Tests(TestCase):
         test_result = y.initial(test_list)
         self.assertListEqual(test_result, [5, 4, 3, 2])
 
-        test_result = y.initial(test_list, 555)
+        test_result = y.initial(test_list, 5555)
         self.assertListEqual(test_result, [])
 
 if __name__ == '__main__':

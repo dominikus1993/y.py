@@ -185,12 +185,5 @@ def rest(collection: List[T]) -> List[T]:
 
 
 def initial(collection: List[T], n: int = 1) -> List[T]:
-    def local_initial():
-        local_size = len(collection) - min([len(collection), n])
-        if (local_size - 1) > 0:
-            for x in range(0, local_size - 1):
-                yield collection[x]
-        else:
-            return []
-
-    return list(local_initial())
+    limit = len(collection) - min([len(collection), n])
+    return collection[0: limit if limit >= 0 else 0]
