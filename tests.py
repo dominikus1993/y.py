@@ -170,5 +170,19 @@ class Tests(TestCase):
         test_result = y.initial(test_list, 5555)
         self.assertListEqual(test_result, [])
 
+    def test_exist(self):
+        test_list = [5, 4, 3, 2, 1]
+        test_result = y.exist(test_list, 1)
+        self.assertTrue(test_result)
+
+        test_result = y.exist(test_list, 1545454)
+        self.assertFalse(test_result)
+
+    def test_unique(self):
+        test_list = [1, 2, 1, 4, 1, 3]
+        test_result = y.unique(test_list)
+        self.assertListEqual(test_result, [1, 2, 4, 3])
+
+
 if __name__ == '__main__':
     unittest.main()

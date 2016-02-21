@@ -184,6 +184,27 @@ def rest(collection: List[T]) -> List[T]:
     return collection[1::]
 
 
+def exist(collection: List[T], element) -> bool:
+    for x in collection:
+        if x == element:
+            return True
+    return False
+
+
 def initial(collection: List[T], n: int = 1) -> List[T]:
     limit = len(collection) - min([len(collection), n])
     return collection[0: limit if limit >= 0 else 0]
+
+
+def unique(collection: List[T]) -> List[T]:
+    def tail_unique(data, acc):
+        if len(data) > 0:
+            head, *tail = data
+            if not exist(acc, head):
+                return tail_unique(tail, acc + [head])
+            else:
+                return tail_unique(tail, acc)
+        else:
+            return acc
+    return tail_unique(collection, [])
+
